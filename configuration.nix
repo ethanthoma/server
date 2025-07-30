@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -14,12 +15,12 @@
   };
 
   nix.settings = {
-    experimental-features = "nix-command flakes";
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   users.users = {
     root.hashedPassword = "!";
-    username = {
+    ${username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
@@ -44,6 +45,13 @@
   time.timeZone = "America/Vancouver";
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
+
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.neovim
+    pkgs.tmux
+    pkgs.fzf
+  ];
 
   system.stateVersion = "25.05";
 }
