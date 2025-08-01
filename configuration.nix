@@ -1,7 +1,9 @@
 { pkgs, username, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.grub = {
     enable = true;
@@ -23,6 +25,14 @@
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHiAN7eu9G4A1OerVYGf+ixTU/gQJPtyRIBq5z/CRLex ethanthoma@gmail.com"
+      ];
+    };
+
+    deploy = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEigi9se71TOa5xHYUAPGEIFp3Bgus267A18VoztreF0 github-actions-deploy"
       ];
     };
   };
