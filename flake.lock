@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "colmena-flake": {
+      "locked": {
+        "lastModified": 1751679594,
+        "narHash": "sha256-6XvUrbAK1F+Qj2eAY9SjQ9+PGxCI/nR1csWGuBr6+oE=",
+        "owner": "juspay",
+        "repo": "colmena-flake",
+        "rev": "792fde47352e137ca49294e7333fac52003e8ddd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "colmena-flake",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -71,6 +86,7 @@
     },
     "root": {
       "inputs": {
+        "colmena-flake": "colmena-flake",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"

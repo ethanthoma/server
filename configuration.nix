@@ -48,7 +48,28 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "ethanthoma@gmail.com";
+    certs."aiso-research.com" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = "/var/lib/secrets/cloudflare-credentials";
+    };
+  };
+
+  services.nginx = {
+    enable = true;
+    group = "acme";
+    virtualHosts."aiso-research.com" = {
+      useACMEHost = "aiso-research.com";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8080";
+      };
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [ 22 443 ];
 
   time.timeZone = "America/Vancouver";
   i18n.defaultLocale = "en_US.UTF-8";
