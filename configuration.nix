@@ -69,7 +69,37 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 443 ];
+  systemd.services.personal-website = {
+    description = "Personal Website Server";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "simple";
+      User = "deploy";
+      Group = "users";
+      WorkingDirectory = "/home/deploy/personal-website";
+      ExecStart = "/home/deploy/personal-website/result/bin/webserver";
+      Restart = "always";
+      RestartSec = "10s";
+
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      ReadWritePaths = [ "/home/deploy/personal-website" ];
+    };
+
+    environment = {
+      WEBSERVER_PORT = "8080";
+      BLOG_SOURCE = "github:ethanthoma/blogs";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [
+    22
+    443
+  ];
 
   time.timeZone = "America/Vancouver";
   i18n.defaultLocale = "en_US.UTF-8";
