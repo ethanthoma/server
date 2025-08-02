@@ -1,0 +1,11 @@
+*
+
+!.gitattributes
+!.gitignore
+
+!flake.lock
+!flake.nix
+
+!configuration.nix
+!hardware-configuration.nix
+!home.nix
