@@ -51,7 +51,7 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "ethanthoma@gmail.com";
-    certs."aiso-research.com" = {
+    certs."ethanthoma.com" = {
       dnsProvider = "cloudflare";
       credentialsFile = "/var/lib/secrets/cloudflare-credentials";
     };
@@ -60,8 +60,8 @@
   services.nginx = {
     enable = true;
     group = "acme";
-    virtualHosts."aiso-research.com" = {
-      useACMEHost = "aiso-research.com";
+    virtualHosts."ethanthoma.com" = {
+      useACMEHost = "ethanthoma.com";
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
